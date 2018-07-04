@@ -10,13 +10,12 @@ public ListNode insertAtTail(ListNode head, int data) {
         temp.next = null;
         head = temp;
         return head;
-     }else if(head.next == null)
-     {
+     } else if(head.next == null) {
          ListNode temp = new ListNode(data);
          temp.next = null;
          head.next = temp;
          return head;
-     }else{
+     } else {
          ListNode temp = head;
          while(temp.next != null){
              temp = temp.next;
@@ -26,5 +25,4 @@ public ListNode insertAtTail(ListNode head, int data) {
          temp.next = newNode;
          return head;
      }
-
 }
