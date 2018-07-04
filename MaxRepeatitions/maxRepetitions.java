@@ -1,12 +1,8 @@
 //Find the Maximum Number of Repetitions 
 
 public static int getMaxRepetition(int[] a) {
-    
 HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-
 int len = a.length;
-
-
 //update the map based on array elements and their counts
 for(int i = 0; i < len; i++){
     if(map.containsKey(a[i])){
@@ -17,7 +13,6 @@ for(int i = 0; i < len; i++){
         map.put(a[i], 1);
     }
 }
-
 //iterate the map
 Iterator iterator = map.entrySet().iterator();
 int max = 0;
@@ -29,10 +24,6 @@ while (iterator.hasNext()) {
         max = val;
         key = (int)me2.getKey();
     }
-} 
-
+}
 return key;
-
-
-    
 }
