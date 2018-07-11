@@ -33,45 +33,26 @@ public class Main {
 
             for (int i = first; i < last; i++) {
                 int offset = i - first;
-                //System.out.println("offset: " + offset);
 
                 //save top
-                //System.out.println("top");
-                //System.out.println("(" + first + ", " + i + ")");
                 int top = arr[first][i];
 
                 //top -> left
-                //System.out.println("top -> left");
-                //System.out.println("(" + (last - offset) + ", " + first + ")");
                 arr[first][i] = arr[last-offset][first];
-                //System.out.println("updated top: " + arr[first][i]);
 
                 //left -> bottom
-                //System.out.println("left -> bottom");
-                //System.out.println("(" + last + ", " + (last-offset) + ")");
                 arr[last-offset][first] = arr[last][last-offset];
-                //System.out.println("updated left: " + arr[last-offset][first]);
+                
 
                 //bottom -> right
-                //System.out.println("bottom -> right");
-                //System.out.println("(" + i + ", " + last + ")");
                 arr[last][last-offset] = arr[i][last];
-                //System.out.println("updated bottom: " + arr[last][last-offset]);
+                
 
                 //right -> top
-                //System.out.println("right -> top");
                 arr[i][last] = top;
-                //System.out.println("updated right: " + arr[i][last]);
             }
         }
 
-        //print matrix after 90 degree clockwise rotation
-       // for (int i = 0; i < 4; i++) {
-         //   for (int j = 0; j < 4; j++) {
-             //   System.out.print(arr[i][j]+ " ");
-           // }
-            //System.out.println();
-        //}
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
 
