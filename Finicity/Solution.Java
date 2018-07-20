@@ -63,7 +63,7 @@ Class Solution{
         }
         
         //if numbers dont add upto 15, return false
-        for(int i = 0; i < list.size()-1; i+){
+        for(int i = 0; i < list.size()-1; i+2){
             if( list.get(i) + list.get(i+1) != 15){
                 return false;
             }
@@ -71,7 +71,7 @@ Class Solution{
         
         //if numbers add upto 15, parse the input string for exclamation marks char
         String regex = "[a-zA-Z0-9]*![a-zA-Z0-9]*![a-zA-Z0-9]*![a-zA-Z0-9]*";
-        for(int j = 0; j < list.size(); j++){
+        for(int j = 0; j < list.size()-1; j+2){
             Pattern patternStr = Pattern.compile(list.get(i).toString() + regex + list.get(i+1).toString());
             Matcher match = patternStr.matcher(str);
             if(!match.find()){
