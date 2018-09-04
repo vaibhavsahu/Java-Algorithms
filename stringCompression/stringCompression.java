@@ -9,30 +9,40 @@ compressString("abc") --> abc
 */
 
 
-public static String compressString(String text) {
-    
-    char [] charArr = text.toCharArray();
+package com.vaibhav.interview;
 
-    StringBuffer buffer = new StringBuffer();
-    int n = 0;
-    for(int i = 0; i < charArr.length; i++){
-        if(i == charArr.length-1){
-            buffer.append(charArr[i]);
-            if(n>1){
-                buffer.append(n+1);
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+
+
+    public static String Compress(String str){
+
+        //Hashmap
+
+        char [] array = str.toCharArray();
+        Map<Character, Integer> charMap = new HashMap<>();
+        StringBuffer sb = new StringBuffer();
+
+        for(int i = 0; i < array.length; i++){
+            if(charMap.containsKey(array[i])){
+                charMap.put(array[i], charMap.get(array[i])+1);
+            }else{
+                charMap.put(array[i], 1);
             }
-        break;
         }
-        if(charArr[i] == charArr[i+1]){
-            n++;
-            continue;
-        } else {
-            buffer.append(charArr[i]);
-            if(n>1){
-            buffer.append(n+1);
-            }    
-        }
-        n = 0;
+
+        charMap.forEach((k, v) -> {
+            sb.append(k);
+            sb.append(v);
+        });
+
+
+        return sb.toString();
     }
-return buffer.toString();
+
+    public static void main(String[] args) {
+        System.out.println(Compress("AAAABBBCCCD"));
+    }
 }
