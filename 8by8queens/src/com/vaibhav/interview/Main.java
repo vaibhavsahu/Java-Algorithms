@@ -32,7 +32,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-
+        Integer [] cols = {0, 1, 2, 3, 4, 5, 6, 7};    
+        ArrayList<Integer> results = new ArrayList<Integer>();
+        placeQueens(0, cols, results);
 
     }
 }
