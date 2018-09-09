@@ -15,8 +15,8 @@ public class Main {
                             {'x','x', 'x', 'o', 'x' },
                             {'x','x', 'x', 'x', 'r' }};
 
-        Date d1 = null;
-        Date d2 = null;
+       // Date d1 = null;
+       // Date d2 = null;
         int  nrows = puzzle.length;
         int ncols = puzzle[0].length;
         char [] word = "ronak".toCharArray();
