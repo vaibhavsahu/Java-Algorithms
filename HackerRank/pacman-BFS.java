@@ -1,11 +1,13 @@
+import java.io.*;
+import java.util.*;
+
 class Point{
     int x;
     int y;
-    //int dist;
+
     Point(int x, int y){
         this.x = x;
         this.y = y;
-        //this.dist = 0;
     }
 
     @Override
@@ -23,6 +25,7 @@ class Point{
 //DOWN(i, j) -> (i, j+1)
 
 public class Main {
+
     public static boolean inRange(int i, int j, char [][] matrix){
         if(i < 0 || i > matrix.length || j < 0 || j > matrix[0].length){
             return false;
@@ -31,50 +34,60 @@ public class Main {
     }
 
 
-    public static int BFS(Point source, Point destination, char [][] matrix) {
+    public static ArrayList<Point> getNeighbors(Point point, char [][] matrix, boolean [][] visited, int [][] distanceMatrix){
+        ArrayList<Point> list = new ArrayList<>();
+        if (inRange(point.x - 1, point.y, matrix) && matrix[point.x - 1][point.y] != '%' && !visited[point.x - 1][point.y]) { //UP
+            list.add(new Point(point.x - 1, point.y));
+            distanceMatrix[point.x - 1][point.y] = distanceMatrix[point.x][point.y] + 1;
+        }
+        
+        if (inRange(point.x + 1, point.y, matrix) && matrix[point.x + 1][point.y] != '%' && !visited[point.x + 1][point.y]) { //DOWN
+            list.add(new Point(point.x + 1, point.y));
+            distanceMatrix[point.x + 1][point.y] = distanceMatrix[point.x][point.y] + 1;
+        }
+        
+        if (inRange(point.x, point.y - 1, matrix) && matrix[point.x][point.y - 1] != '%' && !visited[point.x][point.y-1]) { //LEFT
+            list.add(new Point(point.x, point.y - 1));
+            distanceMatrix[point.x][point.y - 1] = distanceMatrix[point.x][point.y] + 1;
+        }
+        
+        if (inRange(point.x, point.y + 1, matrix) && matrix[point.x][point.y + 1] != '%' && !visited[point.x][point.y+1]) { //DOWN
+            list.add(new Point(point.x, point.y + 1));
+            distanceMatrix[point.x][point.y + 1] = distanceMatrix[point.x][point.y] + 1;
+        }
+        
+        return list;
+    }
+
+    public static int BFS(Point source, Point destination, char [][] matrix, int [][] distanceMatrix) {
 
         LinkedList<Point> queue = new LinkedList();
         boolean [][] visited = new boolean[matrix.length][matrix[0].length];
 
         queue.add(source);
-        int pathLength = 0;
+
 
         while (!queue.isEmpty()) {
             Point node = queue.remove();
+
             if (node.equals(destination)) {
-                System.out.println("path found");
-                return pathLength;
+                return distanceMatrix[node.x][node.y];
             }
             visited[node.x][node.y] = true;
 
             //neighbor list
-            ArrayList<Point> neighbors = new ArrayList();
-            if (inRange(node.x - 1, node.y, matrix) && matrix[node.x - 1][node.y] != '%' && !visited[node.x - 1][node.y]) { //UP
-                neighbors.add(new Point(node.x - 1, node.y));
-            }
-            if (inRange(node.x + 1, node.y, matrix) && matrix[node.x + 1][node.y] != '%' && !visited[node.x + 1][node.y]) { //DOWN
-                neighbors.add(new Point(node.x + 1, node.y));
-                //System.out.println("i: " + (node.x + 1) + ", "+ "j: " + node.y);
-            }
-            if (inRange(node.x, node.y - 1, matrix) && matrix[node.x][node.y - 1] != '%' && !visited[node.x][node.y-1]) { //LEFT
-                neighbors.add(new Point(node.x, node.y - 1));
-            }
-            if (inRange(node.x, node.y + 1, matrix) && matrix[node.x][node.y + 1] != '%' && !visited[node.x][node.y+1]) { //DOWN
-                neighbors.add(new Point(node.x, node.y + 1));
-            }
+            ArrayList<Point> neighbors = getNeighbors(node, matrix, visited, distanceMatrix);
 
             for (Point p : neighbors) {
                 if (!visited[p.x][p.y]) {
-                    pathLength++;
                     visited[p.x][p.y] = true;
                     queue.add(p);
                 }
             }
         }
-        return pathLength;
+        return -1;
     }
-
-
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int x1 = sc.nextInt();
@@ -92,15 +105,10 @@ public class Main {
             String line = sc.next();
             matrix[i] = line.toCharArray();
         }
-        
-        // for(int i = 0; i < rows; i++){
-        //     for(int j = 0; j < cols; j++){
-        //         System.out.print(matrix[i][j]);
-        //     }
-        //     System.out.println();
-        // }
-        
-        int pathlength = BFS(source, destination, matrix);
+
+        int [][]distanceMatrix = new int[matrix.length][matrix[0].length];
+        int pathlength = BFS(source, destination, matrix, distanceMatrix);
+        System.out.println(pathlength);
         
     }
 }
