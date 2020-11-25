@@ -1,6 +1,3 @@
-
-
-
 /* 
 
 Your previous Plain Text content is preserved below:
@@ -20,8 +17,14 @@ Your previous Plain Text content is preserved below:
 **     accumulate the most rocks along the way. 
 **     
 **     Note: You can only travel either north (up) or east (right).
+
+
 **  2) Consider adding some additional tests in doTestsPass().
+
+
 **  3) Implement optimalPath() correctly.
+
+
 **  4) Here is an example:
 **                                                           ^
 **                 {{0,0,0,0,5}, New_York (finish)           N
