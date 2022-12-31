@@ -2,10 +2,10 @@
 
 Your previous Plain Text content is preserved below:
 
-/* Problem Name is &&& Optimal Path &&& PLEASE DO NOT REMOVE THIS LINE. */
+ Problem Name is &&& Optimal Path &&& PLEASE DO NOT REMOVE THIS LINE. */
 
-/*
-** Instructions to candidate.
+
+ Instructions to candidate.
 **  1) You are an avid rock collector who lives in southern California. Some rare 
 **     and desirable rocks just became available in New York, so you are planning 
 **     a cross-country road trip. There are several other rare rocks that you could 
